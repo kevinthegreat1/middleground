@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.widget.CyclingButtonWidget;
@@ -28,28 +29,35 @@ public abstract class OptionsScreenMixin extends Screen {
 		super(text);
 	}
 
-	private int randomX() {
-		return rand.nextInt(this.width - 300);
+	private static int randomX(int width) {
+		return rand.nextInt(width - 300);
 	}
 
-	private int randomY() {
-		return rand.nextInt(this.height - 20);
+	private static int randomY(int height) {
+		return rand.nextInt(height - 20);
 	}
 
-	private int randomWidth() {
+	private static int randomWidth() {
 		return rand.nextInt(300);
 	}
 
 	@ModifyArgs(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/LockButtonWidget;<init>(IILnet/minecraft/client/gui/widget/ButtonWidget$PressAction;)V"))
-	private void modifyLockButtonWidgetInit(Args args) {
-		args.set(0, randomX());
-		args.set(1, randomY());
+	private void middleground_modifyLockButtonWidgetInit(Args args) {
+		args.set(0, randomX(width));
+		args.set(1, randomY(height));
 	}
 
 	@Inject(method = "init", at = @At("RETURN"))
-	private void finalizeDifficultyButton(CallbackInfo ci) {
-		if (this.client.world != null) {
+	private void middleground_finalizeDifficultyButton(CallbackInfo ci) {
+		if (difficultyButton != null) {
 			difficultyButton.setWidth(randomWidth());
 		}
+	}
+
+	@ModifyArgs(method = "createDifficultyButtonWidget", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/CyclingButtonWidget$Builder;build(IIIILnet/minecraft/text/Text;Lnet/minecraft/client/gui/widget/CyclingButtonWidget$UpdateCallback;)Lnet/minecraft/client/gui/widget/CyclingButtonWidget;"))
+	private static void middleground_modifyDifficultyButtonWidgetInit(Args args, int buttonIndex, int width, int height, String translationKey, MinecraftClient client) {
+		args.set(0, randomX(width));
+		args.set(1, randomY(height));
+		args.set(2, randomWidth());
 	}
 }

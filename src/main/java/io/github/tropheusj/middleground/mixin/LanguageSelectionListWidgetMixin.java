@@ -1,21 +1,22 @@
 package io.github.tropheusj.middleground.mixin;
 
-import io.github.tropheusj.middleground.Middleground;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.SortedSet;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.SortedSet;
+import net.minecraft.client.resource.language.LanguageDefinition;
 
 @Mixin(targets = "net.minecraft.client.gui.screen.option.LanguageOptionsScreen$LanguageSelectionListWidget")
-public class LanguageSelectionListWidgetMixin {
-	@Redirect(method = "Lnet/minecraft/client/gui/screen/option/LanguageOptionsScreen$LanguageSelectionListWidget;<init>(Lnet/minecraft/client/MinecraftClient;)V", at = @At(value = "INVOKE", target = "Ljava/util/SortedSet;iterator()Ljava/util/Iterator;"))
-	private Iterator redirectIteratorInLoop(SortedSet instance) {
-		Object[] arr = instance.toArray();
-		Middleground.shuffle(arr);
-		return List.of(arr).iterator();
+public abstract class LanguageSelectionListWidgetMixin {
+	@Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Ljava/util/SortedSet;iterator()Ljava/util/Iterator;"))
+	private Iterator<LanguageDefinition> middleground_redirectIteratorInLoop(SortedSet<LanguageDefinition> sortedSet) {
+		List<LanguageDefinition> list = new java.util.ArrayList<>(sortedSet);
+		Collections.shuffle(list);
+		return list.iterator();
 	}
 }
