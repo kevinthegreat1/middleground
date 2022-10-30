@@ -5,14 +5,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.fabricmc.api.ModInitializer;
 
 public class Middleground implements ModInitializer {
+	public static final String MOD_ID = "middleground";
+	public static final String MOD_NAME = "Middleground";
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final Random RAND = new Random();
 
 	@Override
 	public void onInitialize() {
-		System.out.println("Middleground initialized.");
+		LOGGER.info(MOD_NAME + " initialized.");
 	}
 
 	public static int rand(int max) {
