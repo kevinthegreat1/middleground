@@ -1,9 +1,10 @@
 package io.github.tropheusj.middleground.mixin;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.SortedSet;
+import java.util.SortedMap;
+import java.util.function.BiConsumer;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,10 +14,12 @@ import net.minecraft.client.resource.language.LanguageDefinition;
 
 @Mixin(targets = "net.minecraft.client.gui.screen.option.LanguageOptionsScreen$LanguageSelectionListWidget")
 public abstract class LanguageSelectionListWidgetMixin {
-	@Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Ljava/util/SortedSet;iterator()Ljava/util/Iterator;"))
-	private Iterator<LanguageDefinition> middleground_redirectIteratorInLoop(SortedSet<LanguageDefinition> sortedSet) {
-		List<LanguageDefinition> list = new java.util.ArrayList<>(sortedSet);
+	@Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Ljava/util/SortedMap;forEach(Ljava/util/function/BiConsumer;)V"))
+	private void middleground_redirectIteratorInLoop(SortedMap<String, LanguageDefinition> languageMap, BiConsumer<String, LanguageDefinition> languageConsumer) {
+		List<String> list = new ArrayList<>(languageMap.keySet());
 		Collections.shuffle(list);
-		return list.iterator();
+		for (String string : list) {
+			languageConsumer.accept(string, languageMap.get(string));
+		}
 	}
 }

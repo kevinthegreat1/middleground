@@ -35,7 +35,7 @@ public abstract class LanguageOptionsScreenMixin extends Screen {
 		titleColor = randColor();
 	}
 
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", ordinal = 1, target = "Lnet/minecraft/client/gui/screen/option/LanguageOptionsScreen;drawCenteredText(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"))
+	@ModifyArgs(method = "render", at = @At(value = "INVOKE", ordinal = 1, target = "Lnet/minecraft/client/gui/screen/option/LanguageOptionsScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)V"))
 	private void middleground_modifyRender0(Args args) {
 		args.set(3, titleX);
 		args.set(4, titleY);

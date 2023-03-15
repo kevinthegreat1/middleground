@@ -3,6 +3,7 @@ package io.github.tropheusj.middleground.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.pack.PackListWidget;
 
+import net.minecraft.client.gui.screen.pack.PackScreen;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
 
 import net.minecraft.text.Text;
@@ -42,7 +43,7 @@ public abstract class PackListWidgetMixin extends AlwaysSelectedEntryListWidget<
 	}
 
 	@Inject(method = "<init>", at = @At("RETURN"))
-	private void middleground_setHeaderArgs(MinecraftClient minecraftClient, int i, int j, Text text, CallbackInfo ci) {
+	private void middleground_setHeaderArgs(MinecraftClient client, PackScreen screen, int width, int height, Text title, CallbackInfo ci) {
 		titleX = rand(width);
 		titleY = rand(height);
 		titleColor = randColor();

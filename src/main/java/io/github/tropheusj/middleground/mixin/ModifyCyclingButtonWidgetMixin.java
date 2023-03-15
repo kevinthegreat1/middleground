@@ -13,8 +13,8 @@ import net.minecraft.client.gui.screen.option.SkinOptionsScreen;
 import net.minecraft.text.Text;
 
 @Mixin({SkinOptionsScreen.class})
-public abstract class ModifyBuildMixin extends Screen {
-	protected ModifyBuildMixin(Text text) {
+public abstract class ModifyCyclingButtonWidgetMixin extends Screen {
+	protected ModifyCyclingButtonWidgetMixin(Text text) {
 		super(text);
 	}
 

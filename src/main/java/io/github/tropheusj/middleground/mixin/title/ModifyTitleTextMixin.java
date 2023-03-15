@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin;
+package io.github.tropheusj.middleground.mixin.title;
 
 import static io.github.tropheusj.middleground.Middleground.rand;
 import static io.github.tropheusj.middleground.Middleground.randColor;
@@ -16,17 +16,14 @@ import net.minecraft.client.gui.screen.option.KeybindsScreen;
 import net.minecraft.client.gui.screen.option.LanguageOptionsScreen;
 import net.minecraft.client.gui.screen.option.MouseOptionsScreen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
-import net.minecraft.client.gui.screen.option.SimpleOptionsScreen;
 import net.minecraft.client.gui.screen.option.SkinOptionsScreen;
-import net.minecraft.client.gui.screen.option.SoundOptionsScreen;
-import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
 import net.minecraft.client.gui.screen.pack.PackScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 @Mixin(value = {ControlsOptionsScreen.class, KeybindsScreen.class, LanguageOptionsScreen.class,
-		MouseOptionsScreen.class, OptionsScreen.class, SimpleOptionsScreen.class, SkinOptionsScreen.class,
-		SoundOptionsScreen.class, VideoOptionsScreen.class, PackScreen.class})
+		MouseOptionsScreen.class, OptionsScreen.class, SkinOptionsScreen.class,
+		PackScreen.class})
 public abstract class ModifyTitleTextMixin extends Screen {
 	private int oldWidth;
 	private int titleX;
@@ -50,17 +47,17 @@ public abstract class ModifyTitleTextMixin extends Screen {
 		this.width = titleX * 2;
 	}
 
-	@ModifyConstant(require = 0, method = "render", constant = @Constant(intValue = 5))
+	@ModifyConstant(method = "render", constant = @Constant(intValue = 5), require = 0, expect = 0)
 	private int middleground_setY0(int original) {
 		return titleY;
 	}
 
-	@ModifyConstant(require = 0, method = "render", constant = @Constant(intValue = 15))
+	@ModifyConstant(method = "render", constant = @Constant(intValue = 15), require = 0, expect = 0)
 	private int middleground_setY1(int original) {
 		return titleY;
 	}
 
-	@ModifyConstant(require = 0, method = "render", constant = @Constant(intValue = 20))
+	@ModifyConstant(method = "render", constant = @Constant(intValue = 20), require = 0, expect = 0)
 	private int middleground_setY2(int original) {
 		return titleY;
 	}

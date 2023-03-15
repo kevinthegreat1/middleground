@@ -6,12 +6,18 @@
   "mixins": [
     "ControlsListWidgetMixin",
     "LanguageOptionsScreenMixin",
-    "LanguageSelectionListWidgetMixin", "ModifyBuildMixin", "ModifyButtonListOrderMixin", "ModifyButtonWidgetMixin",
-    "ModifyCyclingOptionMixin", "ModifyInitFooterMixin", "ModifyTitleTextMixin",
+    "LanguageSelectionListWidgetMixin",
+    "ModifyCyclingButtonWidgetMixin",
+    "ModifyOptionListWidgetMixin",
+    "ModifyOptionWidgetMixin",
     "OptionsScreenMixin",
     "PackListWidgetMixin",
-    "SoundOptionsScreenMixin",
-    "VideoOptionsScreenMixin"
+    "accessor.OptionListWidgetWidgetEntryAccessor",
+    "buttonwidget.ModifyAccessibilityOptionsScreenButtonWidgetMixin",
+    "buttonwidget.ModifyButtonWidgetMixin",
+    "buttonwidget.ModifyOptionsScreenButtonWidgetMixin",
+    "title.ModifyGameOptionsScreenTitleMixin",
+    "title.ModifyTitleTextMixin"
   ],
   "client": [
   ],
