@@ -15,6 +15,9 @@
   "icon": "assets/middleground/icon.png",
   "environment": "client",
   "entrypoints": {
+    "preLaunch": [
+      "io.github.tropheusj.middleground.MiddlegroundPreLaunch"
+    ],
     "main": [
       "io.github.tropheusj.middleground.Middleground"
     ]
