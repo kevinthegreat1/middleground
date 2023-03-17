@@ -1,7 +1,8 @@
 package io.github.tropheusj.middleground.mixin.title;
 
-import static io.github.tropheusj.middleground.Middleground.rand;
+import static io.github.tropheusj.middleground.Middleground.randX;
 import static io.github.tropheusj.middleground.Middleground.randColor;
+import static io.github.tropheusj.middleground.Middleground.randY;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,8 +37,8 @@ public abstract class ModifyTitleTextMixin extends Screen {
 
 	@Inject(method = "init", at = @At("HEAD"))
 	private void middleground_init(CallbackInfo ci) {
-		titleX = rand(this.width);
-		titleY = rand(this.height);
+		titleX = randX(this.width);
+		titleY = randY(this.height);
 		titleColor = randColor();
 	}
 

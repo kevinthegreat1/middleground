@@ -1,14 +1,14 @@
 package io.github.tropheusj.middleground;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.fabricmc.api.ModInitializer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class Middleground implements ModInitializer {
 	public static final String MOD_ID = "middleground";
@@ -21,8 +21,12 @@ public class Middleground implements ModInitializer {
 		LOGGER.info(MOD_NAME + " initialized.");
 	}
 
-	public static int rand(int max) {
-		return RAND.nextInt(max);
+	public static int randX(int max) {
+		return RAND.nextInt(Math.max(max - 300, 0));
+	}
+
+	public static int randY(int max) {
+		return RAND.nextInt(Math.max(max - 20, 0));
 	}
 
 	public static int randWidth() {

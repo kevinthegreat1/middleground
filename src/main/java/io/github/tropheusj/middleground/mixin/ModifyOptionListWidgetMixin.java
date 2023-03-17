@@ -1,7 +1,8 @@
 package io.github.tropheusj.middleground.mixin;
 
-import static io.github.tropheusj.middleground.Middleground.rand;
+import static io.github.tropheusj.middleground.Middleground.randX;
 import static io.github.tropheusj.middleground.Middleground.randWidth;
+import static io.github.tropheusj.middleground.Middleground.randY;
 
 import java.util.Collections;
 
@@ -44,8 +45,8 @@ public abstract class ModifyOptionListWidgetMixin extends Screen {
 	private void middleground_modifyButtonListOrder(CallbackInfo info) {
 		for (OptionListWidget.WidgetEntry entry : optionListWidget.children()) {
 			for (ClickableWidget widget : ((OptionListWidgetWidgetEntryAccessor) entry).getWidgets()) {
-				widget.setX(rand(width));
-				widget.setY(rand(height));
+				widget.setX(randX(width));
+				widget.setY(randY(height));
 				widget.setWidth(randWidth());
 			}
 		}
