@@ -2,6 +2,7 @@ package io.github.tropheusj.middleground.mixin.buttonwidget;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.AccessibilityOptionsScreen;
+import net.minecraft.client.gui.screen.option.SimpleOptionsScreen;
 import net.minecraft.text.Text;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -9,13 +10,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import static io.github.tropheusj.middleground.Middleground.randX;
-import static io.github.tropheusj.middleground.Middleground.randWidth;
-import static io.github.tropheusj.middleground.Middleground.randY;
+import static io.github.tropheusj.middleground.Middleground.*;
 
-@Mixin(AccessibilityOptionsScreen.class)
-public abstract class ModifyAccessibilityOptionsScreenButtonWidgetMixin extends Screen {
-	protected ModifyAccessibilityOptionsScreenButtonWidgetMixin(Text title) {
+@Mixin({SimpleOptionsScreen.class, AccessibilityOptionsScreen.class})
+public abstract class ModifyFooterButtonWidgetMixin extends Screen {
+	protected ModifyFooterButtonWidgetMixin(Text title) {
 		super(title);
 	}
 
