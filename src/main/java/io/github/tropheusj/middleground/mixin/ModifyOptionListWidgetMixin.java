@@ -6,10 +6,12 @@ import static io.github.tropheusj.middleground.Middleground.randWidth;
 import java.util.Collections;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import io.github.tropheusj.middleground.Middleground;
 import io.github.tropheusj.middleground.mixin.accessor.OptionListWidgetWidgetEntryAccessor;
@@ -24,11 +26,18 @@ import net.minecraft.text.Text;
 
 @Mixin(value = {SimpleOptionsScreen.class, MouseOptionsScreen.class, VideoOptionsScreen.class, SoundOptionsScreen.class})
 public abstract class ModifyOptionListWidgetMixin extends Screen {
-	@Shadow(aliases = {"field_2639", "field_19246", "field_26681", "field_40416"})
+	@Unique
 	private OptionListWidget optionListWidget;
 
 	public ModifyOptionListWidgetMixin(Text title) {
 		super(title);
+	}
+
+	@SuppressWarnings({"MixinAnnotationTarget", "InvalidMemberReference"})
+	@ModifyExpressionValue(method = "init", at = @At(value = "NEW", target = "(Lnet/minecraft/client/MinecraftClient;IIIII)Lnet/minecraft/client/gui/widget/OptionListWidget;"))
+	private OptionListWidget middleground_getOptionListWidget(OptionListWidget optionListWidget) {
+		this.optionListWidget = optionListWidget;
+		return optionListWidget;
 	}
 
 	@Inject(method = "init", at = @At("RETURN"))
@@ -38,11 +47,6 @@ public abstract class ModifyOptionListWidgetMixin extends Screen {
 				widget.setX(rand(width));
 				widget.setY(rand(height));
 				widget.setWidth(randWidth());
-			}
-		}
-		for (OptionListWidget.WidgetEntry entry : optionListWidget.children()) {
-			for (ClickableWidget widget : ((OptionListWidgetWidgetEntryAccessor) entry).getWidgets()) {
-				Middleground.LOGGER.info("x: {}, y: {}, width: {}", widget.getX(), widget.getY(), widget.getWidth());
 			}
 		}
 		Collections.shuffle(optionListWidget.children(), Middleground.RAND);
