@@ -1,7 +1,7 @@
-package io.github.tropheusj.middleground.mixin;
+package io.github.tropheusj.middleground.mixin.widget.list;
 
-import static io.github.tropheusj.middleground.Middleground.randX;
 import static io.github.tropheusj.middleground.Middleground.randWidth;
+import static io.github.tropheusj.middleground.Middleground.randX;
 import static io.github.tropheusj.middleground.Middleground.randY;
 
 import java.util.Collections;
@@ -34,11 +34,9 @@ public abstract class ModifyOptionListWidgetMixin extends Screen {
 		super(title);
 	}
 
-	@SuppressWarnings({"MixinAnnotationTarget", "InvalidMemberReference"})
 	@ModifyExpressionValue(method = "init", at = @At(value = "NEW", target = "(Lnet/minecraft/client/MinecraftClient;IIIII)Lnet/minecraft/client/gui/widget/OptionListWidget;"))
 	private OptionListWidget middleground_getOptionListWidget(OptionListWidget optionListWidget) {
-		this.optionListWidget = optionListWidget;
-		return optionListWidget;
+		return this.optionListWidget = optionListWidget;
 	}
 
 	@Inject(method = "init", at = @At("RETURN"))

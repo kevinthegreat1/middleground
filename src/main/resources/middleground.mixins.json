@@ -1,27 +1,24 @@
 {
-  "required": true,
+  "required": false,
   "minVersion": "0.8",
   "package": "io.github.tropheusj.middleground.mixin",
-  "compatibilityLevel": "JAVA_16",
-  "mixins": [
-    "ControlsListWidgetMixin",
-    "LanguageOptionsScreenMixin",
-    "LanguageSelectionListWidgetMixin",
-    "ModifyCyclingButtonWidgetMixin",
-    "ModifyOptionListWidgetMixin",
-    "ModifyOptionWidgetMixin",
-    "OptionsScreenMixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
     "accessor.OptionListWidgetWidgetEntryAccessor",
-    "buttonwidget.ModifyFooterButtonWidgetMixin",
-    "buttonwidget.ModifyButtonWidgetMixin",
-    "buttonwidget.ModifyOptionsScreenButtonWidgetMixin",
     "resourcePack.PackListWidgetMixin",
     "resourcePack.ResourcePackOrganizerAbstractPackMixin",
     "resourcePack.ResourcePackOrganizerMixin",
     "title.ModifyGameOptionsScreenTitleMixin",
-    "title.ModifyTitleTextMixin"
-  ],
-  "client": [
+    "title.ModifyTitleTextMixin",
+    "widget.ModifyGridWidgetMixin",
+    "widget.ModifyOptionWidgetMixin",
+    "widget.ModifyThreePartsLayoutWidgetMixin",
+    "widget.button.ModifyButtonWidgetMixin",
+    "widget.button.ModifyFooterButtonWidgetMixin",
+    "widget.button.ModifyTopRightButtonWidgetMixin",
+    "widget.list.ControlsListWidgetMixin",
+    "widget.list.LanguageSelectionListWidgetMixin",
+    "widget.list.ModifyOptionListWidgetMixin"
   ],
   "injectors": {
     "defaultRequire": 0

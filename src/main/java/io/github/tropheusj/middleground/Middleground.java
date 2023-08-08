@@ -22,7 +22,7 @@ public class Middleground implements ModInitializer {
 	}
 
 	public static int randX(int max) {
-		return RAND.nextInt(Math.max(max - 300, 0));
+		return RAND.nextInt(Math.max(max - 150, 0));
 	}
 
 	public static int randY(int max) {

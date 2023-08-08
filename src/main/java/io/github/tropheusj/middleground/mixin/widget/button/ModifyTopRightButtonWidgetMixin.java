@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin.buttonwidget;
+package io.github.tropheusj.middleground.mixin.widget.button;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
@@ -14,8 +14,8 @@ import static io.github.tropheusj.middleground.Middleground.randWidth;
 import static io.github.tropheusj.middleground.Middleground.randY;
 
 @Mixin(OptionsScreen.class)
-public abstract class ModifyOptionsScreenButtonWidgetMixin extends Screen {
-	protected ModifyOptionsScreenButtonWidgetMixin(Text title) {
+public abstract class ModifyTopRightButtonWidgetMixin extends Screen {
+	protected ModifyTopRightButtonWidgetMixin(Text title) {
 		super(title);
 	}
 

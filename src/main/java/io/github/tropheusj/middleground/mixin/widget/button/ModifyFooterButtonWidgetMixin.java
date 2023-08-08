@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin.buttonwidget;
+package io.github.tropheusj.middleground.mixin.widget.button;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.AccessibilityOptionsScreen;

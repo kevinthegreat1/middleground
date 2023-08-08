@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin;
+package io.github.tropheusj.middleground.mixin.widget.list;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
