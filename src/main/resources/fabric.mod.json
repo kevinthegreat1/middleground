@@ -15,9 +15,6 @@
   "icon": "assets/middleground/icon.png",
   "environment": "client",
   "entrypoints": {
-    "preLaunch": [
-      "io.github.tropheusj.middleground.MiddlegroundPreLaunch"
-    ],
     "main": [
       "io.github.tropheusj.middleground.Middleground"
     ]
@@ -25,7 +22,7 @@
   "mixins": [
     "middleground.mixins.json"
   ],
-  "accessWidener" : "middleground.accesswidener",
+  "accessWidener": "middleground.accesswidener",
   "depends": {
     "fabricloader": ">=0.11.6",
     "minecraft": ">=1.19.4",

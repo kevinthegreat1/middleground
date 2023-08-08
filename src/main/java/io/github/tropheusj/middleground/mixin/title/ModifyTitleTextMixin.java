@@ -1,16 +1,18 @@
 package io.github.tropheusj.middleground.mixin.title;
 
-import static io.github.tropheusj.middleground.Middleground.randX;
 import static io.github.tropheusj.middleground.Middleground.randColor;
+import static io.github.tropheusj.middleground.Middleground.randX;
 import static io.github.tropheusj.middleground.Middleground.randY;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.ControlsOptionsScreen;
 import net.minecraft.client.gui.screen.option.KeybindsScreen;
@@ -19,16 +21,19 @@ import net.minecraft.client.gui.screen.option.MouseOptionsScreen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.screen.option.SkinOptionsScreen;
 import net.minecraft.client.gui.screen.pack.PackScreen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
 @Mixin(value = {ControlsOptionsScreen.class, KeybindsScreen.class, LanguageOptionsScreen.class,
 		MouseOptionsScreen.class, OptionsScreen.class, SkinOptionsScreen.class,
 		PackScreen.class})
 public abstract class ModifyTitleTextMixin extends Screen {
+	@Unique
 	private int oldWidth;
+	@Unique
 	private int titleX;
+	@Unique
 	private int titleY;
+	@Unique
 	private int titleColor;
 
 	protected ModifyTitleTextMixin(Text text) {
@@ -43,7 +48,7 @@ public abstract class ModifyTitleTextMixin extends Screen {
 	}
 
 	@Inject(method = "render", at = @At(value = "CONSTANT", args = {"intValue=2"} /* width / 2 */, shift = At.Shift.BEFORE))
-	private void middleground_renderHead(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+	private void middleground_renderHead(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
 		oldWidth = this.width;
 		this.width = titleX * 2;
 	}
@@ -69,7 +74,7 @@ public abstract class ModifyTitleTextMixin extends Screen {
 	}
 
 	@Inject(method = "render", at = @At(value = "CONSTANT", args = {"intValue=2"} /* width / 2 */, shift = At.Shift.AFTER))
-	private void middleground_renderTail(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+	private void middleground_renderTail(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
 		this.width = oldWidth;
 	}
 }

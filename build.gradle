@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -25,8 +25,8 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    include implementation("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
-    include annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
+    // Mixin Extras (https://github.com/LlamaLad7/MixinExtras)
+    include implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixin_extras_version}"))
 }
 
 processResources {
