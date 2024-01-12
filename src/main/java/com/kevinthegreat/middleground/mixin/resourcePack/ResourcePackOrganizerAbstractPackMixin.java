@@ -1,6 +1,7 @@
-package io.github.tropheusj.middleground.mixin.resourcePack;
+package com.kevinthegreat.middleground.mixin.resourcePack;
 
-import io.github.tropheusj.middleground.Middleground;
+import com.kevinthegreat.middleground.Middleground;
+
 import net.minecraft.resource.ResourcePackProfile;
 
 import org.spongepowered.asm.mixin.Mixin;

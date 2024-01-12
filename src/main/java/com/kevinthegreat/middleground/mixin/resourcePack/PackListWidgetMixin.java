@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin.resourcePack;
+package com.kevinthegreat.middleground.mixin.resourcePack;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.pack.PackListWidget;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-import static io.github.tropheusj.middleground.Middleground.*;
+import static com.kevinthegreat.middleground.Middleground.*;
 
 @Mixin(PackListWidget.class)
 public abstract class PackListWidgetMixin extends AlwaysSelectedEntryListWidget<PackListWidget.ResourcePackEntry> {
@@ -24,8 +24,8 @@ public abstract class PackListWidgetMixin extends AlwaysSelectedEntryListWidget<
     @Unique
     private int titleColor;
 
-    public PackListWidgetMixin(MinecraftClient minecraftClient, int i, int j, int k, int l, int m) {
-        super(minecraftClient, i, j, k, l, m);
+    public PackListWidgetMixin(MinecraftClient minecraftClient, int i, int j, int k, int l) {
+        super(minecraftClient, i, j, k, l);
     }
 
     @Inject(method = "<init>", at = @At("RETURN"))

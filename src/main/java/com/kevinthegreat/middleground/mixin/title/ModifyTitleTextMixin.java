@@ -1,10 +1,9 @@
-package io.github.tropheusj.middleground.mixin.title;
+package com.kevinthegreat.middleground.mixin.title;
 
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.option.*;
-import net.minecraft.client.gui.screen.pack.PackScreen;
-import net.minecraft.text.Text;
+import static com.kevinthegreat.middleground.Middleground.randColor;
+import static com.kevinthegreat.middleground.Middleground.randX;
+import static com.kevinthegreat.middleground.Middleground.randY;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,12 +12,25 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static io.github.tropheusj.middleground.Middleground.*;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
 
-@Mixin({ControlsOptionsScreen.class, KeybindsScreen.class, LanguageOptionsScreen.class, MouseOptionsScreen.class, OptionsScreen.class, SkinOptionsScreen.class, PackScreen.class})
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.option.ControlsOptionsScreen;
+import net.minecraft.client.gui.screen.option.KeybindsScreen;
+import net.minecraft.client.gui.screen.option.LanguageOptionsScreen;
+import net.minecraft.client.gui.screen.option.MouseOptionsScreen;
+import net.minecraft.client.gui.screen.option.OptionsScreen;
+import net.minecraft.client.gui.screen.option.SimpleOptionsScreen;
+import net.minecraft.client.gui.screen.option.SkinOptionsScreen;
+import net.minecraft.client.gui.screen.option.SoundOptionsScreen;
+import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
+import net.minecraft.client.gui.screen.pack.PackScreen;
+import net.minecraft.text.Text;
+
+@Mixin({ControlsOptionsScreen.class, KeybindsScreen.class, LanguageOptionsScreen.class, MouseOptionsScreen.class, OptionsScreen.class, SimpleOptionsScreen.class, SkinOptionsScreen.class, SoundOptionsScreen.class, PackScreen.class, VideoOptionsScreen.class})
 public abstract class ModifyTitleTextMixin extends Screen {
-    @Unique
-    private int oldWidth;
     /**
      * The first random x value. Used to randomize the title.
      */
@@ -65,14 +77,14 @@ public abstract class ModifyTitleTextMixin extends Screen {
     }
 
     @Inject(method = "render", at = @At(value = "CONSTANT", args = {"intValue=2"} /* width / 2 */, ordinal = 0, shift = At.Shift.BEFORE))
-    private void middleground_beforeDrawText1(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        oldWidth = this.width;
+    private void middleground_beforeDrawText1(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci, @Share("oldWidth") LocalIntRef oldWidth) {
+        oldWidth.set(this.width);
         this.width = x1 * 2;
     }
 
     @Inject(method = "render", at = @At(value = "CONSTANT", args = {"intValue=2"} /* width / 2 */, ordinal = 1, shift = At.Shift.BEFORE), expect = 0)
-    private void middleground_beforeDrawText2(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        oldWidth = this.width;
+    private void middleground_beforeDrawText2(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci, @Share("oldWidth") LocalIntRef oldWidth) {
+		oldWidth.set(this.width);
         this.width = x2 * 2;
     }
 
@@ -109,7 +121,7 @@ public abstract class ModifyTitleTextMixin extends Screen {
     }
 
     @Inject(method = "render", at = @At(value = "CONSTANT", args = {"intValue=2"} /* width / 2 */, shift = At.Shift.AFTER))
-    private void middleground_afterDrawText(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        this.width = oldWidth;
+    private void middleground_afterDrawText(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci, @Share("oldWidth") LocalIntRef oldWidth) {
+        this.width = oldWidth.get();
     }
 }

@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground;
+package com.kevinthegreat.middleground;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -23,6 +23,10 @@ public class Middleground implements ModInitializer {
 
 	public static int randX(int max) {
 		return RAND.nextInt(Math.max(max - 150, 0));
+	}
+
+	public static int randX(int max, int width) {
+		return RAND.nextInt(Math.max(max - width, 0));
 	}
 
 	public static int randY(int max) {

@@ -1,7 +1,8 @@
-package io.github.tropheusj.middleground.mixin.widget;
+package com.kevinthegreat.middleground.mixin.widget;
 
-import static io.github.tropheusj.middleground.Middleground.randX;
-import static io.github.tropheusj.middleground.Middleground.randY;
+import static com.kevinthegreat.middleground.Middleground.randWidth;
+import static com.kevinthegreat.middleground.Middleground.randX;
+import static com.kevinthegreat.middleground.Middleground.randY;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +24,8 @@ public abstract class ModifyOptionWidgetMixin extends Screen {
 
 	@ModifyArgs(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/SimpleOption;createWidget(Lnet/minecraft/client/option/GameOptions;III)Lnet/minecraft/client/gui/widget/ClickableWidget;"))
 	private void middleground_modifyOptionWidget(Args args) {
-		args.set(1, randX(width));
+		args.set(3, randWidth());
+		args.set(1, randX(width, args.get(3)));
 		args.set(2, randY(height));
 	}
 }

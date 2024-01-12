@@ -1,14 +1,13 @@
 {
   "required": false,
   "minVersion": "0.8",
-  "package": "io.github.tropheusj.middleground.mixin",
+  "package": "com.kevinthegreat.middleground.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
     "accessor.OptionListWidgetWidgetEntryAccessor",
     "resourcePack.PackListWidgetMixin",
     "resourcePack.ResourcePackOrganizerAbstractPackMixin",
     "resourcePack.ResourcePackOrganizerMixin",
-    "title.ModifyGameOptionsScreenTitleMixin",
     "title.ModifyTitleTextMixin",
     "widget.ModifyGridWidgetMixin",
     "widget.ModifyOptionWidgetMixin",

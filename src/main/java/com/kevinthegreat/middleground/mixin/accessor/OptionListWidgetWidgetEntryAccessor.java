@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin.accessor;
+package com.kevinthegreat.middleground.mixin.accessor;
 
 import net.minecraft.client.gui.widget.ClickableWidget;
 

@@ -1,4 +1,4 @@
-package io.github.tropheusj.middleground.mixin.widget.list;
+package com.kevinthegreat.middleground.mixin.widget.list;
 
 import java.util.ArrayList;
 import java.util.Collections;
