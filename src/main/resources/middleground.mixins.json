@@ -8,16 +8,15 @@
     "resourcePack.PackListWidgetMixin",
     "resourcePack.ResourcePackOrganizerAbstractPackMixin",
     "resourcePack.ResourcePackOrganizerMixin",
-    "title.ModifyTitleTextMixin",
     "widget.ModifyGridWidgetMixin",
-    "widget.ModifyOptionWidgetMixin",
     "widget.ModifyThreePartsLayoutWidgetMixin",
     "widget.button.ModifyButtonWidgetMixin",
     "widget.button.ModifyFooterButtonWidgetMixin",
     "widget.button.ModifyTopRightButtonWidgetMixin",
     "widget.list.ControlsListWidgetMixin",
     "widget.list.LanguageSelectionListWidgetMixin",
-    "widget.list.ModifyOptionListWidgetMixin"
+    "widget.list.ModifyOptionListWidgetMixin",
+    "widget.list.OptionListWidgetWidgetEntryMixin"
   ],
   "injectors": {
     "defaultRequire": 0

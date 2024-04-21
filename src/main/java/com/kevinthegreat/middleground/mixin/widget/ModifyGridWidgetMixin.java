@@ -23,7 +23,7 @@ public abstract class ModifyGridWidgetMixin extends Screen {
         super(text);
     }
 
-    @ModifyArg(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/GridWidget;forEachChild(Ljava/util/function/Consumer;)V"))
+    @ModifyArg(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;forEachChild(Ljava/util/function/Consumer;)V"))
     private Consumer<ClickableWidget> midleground_modifyGridWidget(Consumer<ClickableWidget> addDrawableChild) {
         return ((Consumer<ClickableWidget>) widget -> {
 			widget.setWidth(randWidth());
