@@ -12,18 +12,13 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
 
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.option.ControlsOptionsScreen;
-import net.minecraft.client.gui.screen.option.KeybindsScreen;
+import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
-import net.minecraft.client.gui.screen.option.SimpleOptionsScreen;
-import net.minecraft.client.gui.screen.option.SkinOptionsScreen;
-import net.minecraft.client.gui.screen.option.SoundOptionsScreen;
-import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
 import net.minecraft.client.gui.screen.pack.PackScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 
-@Mixin({ControlsOptionsScreen.class, KeybindsScreen.class, OptionsScreen.class, PackScreen.class, SkinOptionsScreen.class})
+@Mixin({GameOptionsScreen.class, OptionsScreen.class, PackScreen.class})
 public abstract class ModifyButtonWidgetMixin extends Screen {
 	protected ModifyButtonWidgetMixin(Text text) {
 		super(text);

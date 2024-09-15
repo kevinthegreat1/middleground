@@ -16,15 +16,15 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.CreditsAndAttributionScreen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
-import net.minecraft.client.gui.screen.option.MouseOptionsScreen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.screen.option.TelemetryInfoScreen;
 import net.minecraft.client.gui.screen.pack.PackScreen;
+import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.client.gui.widget.ThreePartsLayoutWidget;
 import net.minecraft.text.Text;
 
-@Mixin({CreditsAndAttributionScreen.class, GameOptionsScreen.class, MouseOptionsScreen.class, OptionsScreen.class, PackScreen.class, TelemetryInfoScreen.class})
+@Mixin({CreditsAndAttributionScreen.class, GameOptionsScreen.class, OptionsScreen.class, PackScreen.class, TelemetryInfoScreen.class})
 public abstract class ModifyThreePartsLayoutWidgetMixin extends Screen {
     @Unique
     private ThreePartsLayoutWidget midleground$layout;
@@ -35,10 +35,10 @@ public abstract class ModifyThreePartsLayoutWidgetMixin extends Screen {
 
     @ModifyExpressionValue(method = {
             "<init>",
-            "*(Lnet/minecraft/class_437;)V",
-            "*(Lnet/minecraft/class_437;Lnet/minecraft/class_315;)V",
-            "*(Lnet/minecraft/class_437;Lnet/minecraft/class_315;Lnet/minecraft/class_2561;)V",
-            "*(Lnet/minecraft/class_3283;Ljava/util/function/Consumer;Ljava/nio/file/Path;Lnet/minecraft/class_2561;)V"
+            "<init>(Lnet/minecraft/class_437;)V",
+            "<init>(Lnet/minecraft/class_437;Lnet/minecraft/class_315;)V",
+            "<init>(Lnet/minecraft/class_437;Lnet/minecraft/class_315;Lnet/minecraft/class_2561;)V",
+            "<init>(Lnet/minecraft/class_3283;Ljava/util/function/Consumer;Ljava/nio/file/Path;Lnet/minecraft/class_2561;)V"
     }, at = @At(value = "NEW", target = "Lnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;", remap = true), remap = false)
     private ThreePartsLayoutWidget midleground$getThreePartsLayoutWidget1(ThreePartsLayoutWidget layout) {
         return this.midleground$layout = layout;
@@ -50,6 +50,7 @@ public abstract class ModifyThreePartsLayoutWidgetMixin extends Screen {
 	})
     private void midleground$modifyThreePartsLayoutWidget(CallbackInfo ci) {
         midleground$layout.forEachChild(widget -> {
+			if (widget instanceof OptionListWidget) return;
             widget.setWidth(randWidth());
             widget.setX(randX(width, widget.getWidth()));
             widget.setY(randY(height));

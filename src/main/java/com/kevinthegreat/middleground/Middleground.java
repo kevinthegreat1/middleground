@@ -1,14 +1,14 @@
 package com.kevinthegreat.middleground;
 
-import net.fabricmc.api.ModInitializer;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.fabricmc.api.ModInitializer;
 
 public class Middleground implements ModInitializer {
 	public static final String MOD_ID = "middleground";
@@ -34,7 +34,7 @@ public class Middleground implements ModInitializer {
 	}
 
 	public static int randWidth() {
-		return RAND.nextInt(300);
+		return RAND.nextInt(20, 300);
 	}
 
 	public static int randColor() {

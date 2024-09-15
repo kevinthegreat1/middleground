@@ -8,7 +8,6 @@
     "resourcePack.PackListWidgetMixin",
     "resourcePack.ResourcePackOrganizerAbstractPackMixin",
     "resourcePack.ResourcePackOrganizerMixin",
-    "widget.ModifyGridWidgetMixin",
     "widget.ModifyThreePartsLayoutWidgetMixin",
     "widget.button.ModifyButtonWidgetMixin",
     "widget.button.ModifyFooterButtonWidgetMixin",
