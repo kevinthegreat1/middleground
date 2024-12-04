@@ -44,7 +44,7 @@ public abstract class ModifyThreePartsLayoutWidgetMixin extends Screen {
         return this.midleground$layout = layout;
     }
 
-    @Inject(method = {"init", "initTabNavigation"}, at = {
+    @Inject(method = {"init", "refreshWidgetPositions"}, at = {
 			@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;refreshPositions()V", shift = At.Shift.AFTER),
 			@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/OptionListWidget;position(ILnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;)V", shift = At.Shift.AFTER)
 	})

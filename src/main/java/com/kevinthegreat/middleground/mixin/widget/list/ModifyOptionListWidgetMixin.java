@@ -36,7 +36,7 @@ public abstract class ModifyOptionListWidgetMixin extends Screen {
 		return this.middleground$optionListWidget = optionListWidget;
 	}
 
-	@Inject(method = {"init", "initTabNavigation"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/OptionListWidget;position(ILnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;)V", shift = At.Shift.AFTER))
+	@Inject(method = {"init", "refreshWidgetPositions"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/OptionListWidget;position(ILnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;)V", shift = At.Shift.AFTER))
 	private void middleground_modifyButtonListOrder(CallbackInfo info) {
 		for (OptionListWidget.WidgetEntry entry : middleground$optionListWidget.children()) {
 			for (ClickableWidget widget : ((OptionListWidgetWidgetEntryAccessor) entry).getWidgets()) {
