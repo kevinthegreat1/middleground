@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.12-SNAPSHOT'
     id 'maven-publish'
     id "me.modmuss50.mod-publish-plugin" version "0.5.1"
 }
@@ -85,8 +85,8 @@ publishMods {
         projectSlug = "middleground" // Required for discord webhook
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
         minecraftVersionRange {
-            start = "1.21"
-            end = "1.21.3"
+            start = "1.21.9"
+            end = "1.21.10"
         }
         requires("fabric-api")
     }
@@ -94,8 +94,8 @@ publishMods {
         projectId = "iY4NbBcW"
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         minecraftVersionRange {
-            start = "1.21"
-            end = "1.21.3"
+            start = "1.21.9"
+            end = "1.21.10"
         }
     }
     github {

@@ -1,3 +1,7 @@
+## Middleground 1.0.7 for 1.21.9 and 1.21.10
+
+Support for 1.21.9 and 1.21.10
+
 ## Middleground 1.0.6 for 1.21 and 1.21.1
 
 Support for 1.21 and 1.21.1

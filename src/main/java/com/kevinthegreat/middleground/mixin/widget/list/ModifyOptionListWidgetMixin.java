@@ -4,6 +4,7 @@ import static com.kevinthegreat.middleground.Middleground.randWidth;
 import static com.kevinthegreat.middleground.Middleground.randX;
 import static com.kevinthegreat.middleground.Middleground.randY;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -45,6 +46,9 @@ public abstract class ModifyOptionListWidgetMixin extends Screen {
 				widget.setY(randY(height));
 			}
 		}
-		Collections.shuffle(middleground$optionListWidget.children(), Middleground.RAND);
+
+		ArrayList<OptionListWidget.WidgetEntry> shuffledEntries = new ArrayList<>(middleground$optionListWidget.children());
+		Collections.shuffle(shuffledEntries, Middleground.RAND);
+		middleground$optionListWidget.replaceEntries(shuffledEntries);
 	}
 }
