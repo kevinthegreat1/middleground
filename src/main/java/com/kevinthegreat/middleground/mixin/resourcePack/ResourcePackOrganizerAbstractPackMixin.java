@@ -21,7 +21,7 @@ public abstract class ResourcePackOrganizerAbstractPackMixin {
 	@Shadow
 	protected abstract List<ResourcePackProfile> getOppositeList();
 
-	@Inject(method = {"toggle", "move"}, at = @At(value = "INVOKE", target = "Ljava/lang/Runnable;run()V"))
+	@Inject(method = {"toggle", "move"}, at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V"))
 	private void middleground_shuffleResourcePackList(CallbackInfo ci) {
 		Collections.shuffle(getCurrentList(), Middleground.RAND);
 		Collections.shuffle(getOppositeList(), Middleground.RAND);

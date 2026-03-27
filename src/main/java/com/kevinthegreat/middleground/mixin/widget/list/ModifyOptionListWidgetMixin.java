@@ -39,15 +39,18 @@ public abstract class ModifyOptionListWidgetMixin extends Screen {
 
 	@Inject(method = {"init", "refreshWidgetPositions"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/OptionListWidget;position(ILnet/minecraft/client/gui/widget/ThreePartsLayoutWidget;)V", shift = At.Shift.AFTER))
 	private void middleground_modifyButtonListOrder(CallbackInfo info) {
-		for (OptionListWidget.WidgetEntry entry : middleground$optionListWidget.children()) {
-			for (ClickableWidget widget : ((OptionListWidgetWidgetEntryAccessor) entry).getWidgets()) {
-				widget.setWidth(randWidth());
-				widget.setX(randX(width, widget.getWidth()));
-				widget.setY(randY(height));
+		for (OptionListWidget.Component entry : middleground$optionListWidget.children()) {
+			if (entry instanceof OptionListWidgetWidgetEntryAccessor widgetEntry) {
+				for (OptionListWidget.OptionAssociatedWidget optionAssociatedWidget : widgetEntry.getWidgets()) {
+					ClickableWidget widget = optionAssociatedWidget.widget();
+					widget.setWidth(randWidth());
+					widget.setX(randX(width, widget.getWidth()));
+					widget.setY(randY(height));
+				}
 			}
 		}
 
-		ArrayList<OptionListWidget.WidgetEntry> shuffledEntries = new ArrayList<>(middleground$optionListWidget.children());
+		ArrayList<OptionListWidget.Component> shuffledEntries = new ArrayList<>(middleground$optionListWidget.children());
 		Collections.shuffle(shuffledEntries, Middleground.RAND);
 		middleground$optionListWidget.replaceEntries(shuffledEntries);
 	}

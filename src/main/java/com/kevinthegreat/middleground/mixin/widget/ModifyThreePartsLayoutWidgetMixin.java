@@ -55,7 +55,7 @@ public abstract class ModifyThreePartsLayoutWidgetMixin extends Screen {
             widget.setX(randX(width, widget.getWidth()));
             widget.setY(randY(height));
             if (widget instanceof TextWidget textWidget) {
-                textWidget.setTextColor(randColor());
+                textWidget.setMessage(textWidget.getMessage().copy().withColor(randColor()));
             }
         });
     }

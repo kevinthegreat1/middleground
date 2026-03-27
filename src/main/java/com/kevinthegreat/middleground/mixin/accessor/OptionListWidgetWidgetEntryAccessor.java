@@ -12,5 +12,5 @@ import java.util.List;
 @Mixin(OptionListWidget.WidgetEntry.class)
 public interface OptionListWidgetWidgetEntryAccessor {
 	@Accessor
-	List<ClickableWidget> getWidgets();
+	List<OptionListWidget.OptionAssociatedWidget> getWidgets();
 }
